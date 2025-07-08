@@ -6,6 +6,5 @@ import main.java.com.project.productapi.core.domain.Product;
 
 public interface FindProductByNameUseCase {
 	Optional<Product> execute(String name);
-	
 }
 
