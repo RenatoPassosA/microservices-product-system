@@ -1,7 +1,7 @@
-package main.java.com.project.productapi.application.service;
+package com.project.productapi.application.service;
 
-import main.java.com.project.productapi.core.gateway.ProductRepository;
-import main.java.com.project.productapi.core.usecases.DeleteProductUseCase;
+import com.project.productapi.core.gateway.ProductRepository;
+import com.project.productapi.core.usecases.DeleteProductUseCase;
 
 public class DeleteProductUseCaseImplementation implements DeleteProductUseCase{
 

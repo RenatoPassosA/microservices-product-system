@@ -1,15 +1,15 @@
-package main.java.com.project.productapi.application.command;
+package com.project.productapi.application.command;
 
 import java.time.LocalDateTime;
 
 public class CreateProductCommand {
-        private String			name;
-        private Double			price;
-        private String			description;
-        private String			category;
-        private Integer			stock;
-        private Boolean			digitalProduct;
-        private LocalDateTime	creationDate;
+        final private String			name;
+        final  private Double			price;
+        final private String			description;
+        final private String			category;
+        final private Integer			stock;
+        final private Boolean			digitalProduct;
+        final private LocalDateTime	creationDate;
 
 		public CreateProductCommand (String name, Double price, String description, String category,
 		Integer stock, Boolean digitalProduct, LocalDateTime creationDate) {

@@ -1,10 +1,10 @@
-package main.java.com.project.productapi.application.service;
+package com.project.productapi.application.service;
 
 import java.util.Optional;
 
-import main.java.com.project.productapi.core.domain.Product;
-import main.java.com.project.productapi.core.gateway.ProductRepository;
-import main.java.com.project.productapi.core.usecases.FindProductByNameUseCase;
+import com.project.productapi.core.domain.Product;
+import com.project.productapi.core.gateway.ProductRepository;
+import com.project.productapi.core.usecases.FindProductByNameUseCase;
 
 public class FindProductByNameUseCaseImplementation implements FindProductByNameUseCase {
 	private final ProductRepository productRepository;

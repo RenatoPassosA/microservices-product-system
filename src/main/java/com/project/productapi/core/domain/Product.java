@@ -1,4 +1,4 @@
-package main.java.com.project.productapi.core.domain;
+package com.project.productapi.core.domain;
 
 import java.time.LocalDateTime;
 

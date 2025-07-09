@@ -1,11 +1,11 @@
-package main.java.com.project.productapi.application.service;
+package com.project.productapi.application.service;
 
 import java.util.Optional;
 
-import main.java.com.project.productapi.application.command.UpdateProductCommand;
-import main.java.com.project.productapi.core.domain.Product;
-import main.java.com.project.productapi.core.gateway.ProductRepository;
-import main.java.com.project.productapi.core.usecases.UpdateProductUseCase;
+import com.project.productapi.application.command.UpdateProductCommand;
+import com.project.productapi.core.domain.Product;
+import com.project.productapi.core.gateway.ProductRepository;
+import com.project.productapi.core.usecases.UpdateProductUseCase;
 
 public class UpdateProductUseCaseImplementation implements UpdateProductUseCase{
 	

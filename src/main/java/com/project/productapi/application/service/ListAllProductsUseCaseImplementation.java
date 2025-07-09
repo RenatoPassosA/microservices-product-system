@@ -1,10 +1,10 @@
-package main.java.com.project.productapi.application.service;
+package com.project.productapi.application.service;
 
 import java.util.List;
 
-import main.java.com.project.productapi.core.domain.Product;
-import main.java.com.project.productapi.core.gateway.ProductRepository;
-import main.java.com.project.productapi.core.usecases.ListAllProductsUseCase;
+import com.project.productapi.core.domain.Product;
+import com.project.productapi.core.gateway.ProductRepository;
+import com.project.productapi.core.usecases.ListAllProductsUseCase;
 
 public class ListAllProductsUseCaseImplementation implements ListAllProductsUseCase {
 	private final ProductRepository productRepository;

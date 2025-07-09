@@ -1,4 +1,4 @@
-package main.java.com.project.productapi.application.result;
+package com.project.productapi.application.result;
 
 public class CheckStockResult {
 	Long	id;

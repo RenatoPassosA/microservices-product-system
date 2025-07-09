@@ -1,9 +1,9 @@
-package main.java.com.project.productapi.core.gateway;
+package com.project.productapi.core.gateway;
 
 import java.util.List;
 import java.util.Optional;
 
-import main.java.com.project.productapi.core.domain.Product;
+import com.project.productapi.core.domain.Product;
 
 public interface ProductRepository {
 	Product save(Product product); //create and update product

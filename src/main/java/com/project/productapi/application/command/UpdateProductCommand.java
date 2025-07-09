@@ -1,13 +1,13 @@
-package main.java.com.project.productapi.application.command;
+package com.project.productapi.application.command;
 
 public class UpdateProductCommand {
-		private Long			id;
-        private String			name;
-        private Double			price;
-        private String			description;
-        private String			category;
-        private Integer			stock;
-        private Boolean			digitalProduct;
+		final private Long				id;
+        final private String			name;
+        final private Double			price;
+        final private String			description;
+        final private String			category;
+        final private Integer			stock;
+        final private Boolean			digitalProduct;
 
 		public UpdateProductCommand (Long	id, String name, Double price, String description, String category,
 		Integer stock, Boolean digitalProduct) {
