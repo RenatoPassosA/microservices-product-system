@@ -4,19 +4,24 @@ import java.time.LocalDateTime;
 
 import com.project.productapi.application.command.CreateProductCommand;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
+
 public class CreateProductRequestDTO {
 
-	//@NotBlank(message = "O nome é obrigatório")
+	@NotBlank(message = "O nome é obrigatório")
 	final private String			name;
-	//@Positive(message = "O preço deve ser positivo")
+	@Positive(message = "O preço deve ser positivo")
 	final private Double			price;
-	//@Size(max = 500, message = "A descrição deve ter no máximo 500 caracteres")
+	@Size(max = 500, message = "A descrição deve ter no máximo 500 caracteres")
 	final private String			description;
-	//@NotBlank(message = "A categoria é obrigatória")
+	@NotBlank(message = "A categoria é obrigatória")
 	final private String			category;
-	//@Positive(message = "O estoque para cadastro deve ser positivo")
+	@Positive(message = "O estoque para cadastro deve ser positivo")
 	final private Integer			stock;
-	//@NotNull(message = "É obrigatório informar se o produto é digital")
+	@NotNull(message = "É obrigatório informar se o produto é digital")
 	final private Boolean			digitalProduct;
 
 	public CreateProductRequestDTO(String name, Double price, String description, String category, Integer stock, Boolean digitalProduct) {
@@ -28,7 +33,7 @@ public class CreateProductRequestDTO {
 			this.digitalProduct = digitalProduct;
 		}
 
-	public CreateProductCommand toCommand()	{
+	public CreateProductCommand dtoToCommand()	{
 		return new CreateProductCommand(
 			this.name,
             this.price,
@@ -61,7 +66,5 @@ public class CreateProductRequestDTO {
 
 	public Boolean getDigitalProduct() {
 		return digitalProduct;
-	}
-
-		
+	}	
 }

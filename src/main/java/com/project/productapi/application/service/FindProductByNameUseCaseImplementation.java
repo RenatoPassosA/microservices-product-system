@@ -1,7 +1,5 @@
 package com.project.productapi.application.service;
 
-import java.util.Optional;
-
 import com.project.productapi.core.domain.Product;
 import com.project.productapi.core.gateway.ProductRepository;
 import com.project.productapi.core.usecases.FindProductByNameUseCase;
@@ -14,8 +12,10 @@ public class FindProductByNameUseCaseImplementation implements FindProductByName
 	}
 
 	@Override
-	public Optional<Product> execute(String name)
+	public Product execute(String name)
 	{
-		return(productRepository.findByName(name));
+		return productRepository.findByName(name)
+        .orElseThrow(() -> 
+		new IllegalArgumentException("Produto não encontrado"));
 	}
 }

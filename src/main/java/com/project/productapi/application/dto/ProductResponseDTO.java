@@ -2,7 +2,9 @@ package com.project.productapi.application.dto;
 
 import java.time.LocalDateTime;
 
-public class UpdateProductResponseDTO {
+import com.project.productapi.core.domain.Product;
+
+public class ProductResponseDTO {
 	final private Long				id;
 	final private String			name;
 	final private Double			price;
@@ -12,7 +14,7 @@ public class UpdateProductResponseDTO {
 	final private Boolean			digitalProduct;
 	final private LocalDateTime		creationDate;
 
-	public UpdateProductResponseDTO (Long id, String name, Double price, String description, String category,
+	public ProductResponseDTO (Long id, String name, Double price, String description, String category,
 		Integer stock, Boolean digitalProduct, LocalDateTime creationDate) {
 		this.id = id;
 		this.name = name;
@@ -23,6 +25,19 @@ public class UpdateProductResponseDTO {
 		this.digitalProduct = digitalProduct;
 		this.creationDate = creationDate;
 		}
+
+	public static ProductResponseDTO productToResponseDTO (Product prod) {
+
+		return (new ProductResponseDTO(
+				prod.getId(),
+				prod.getName(),
+				prod.getPrice(),
+				prod.getDescription(),
+				prod.getCategory(),
+				prod.getStock(),
+				prod.getDigitalProduct(),
+				prod.getCreationDate()));
+	}
 
     public Long getId() {
         return id;

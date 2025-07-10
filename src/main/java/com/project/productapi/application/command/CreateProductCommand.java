@@ -9,7 +9,7 @@ public class CreateProductCommand {
         final private String			category;
         final private Integer			stock;
         final private Boolean			digitalProduct;
-        final private LocalDateTime	creationDate;
+        final private LocalDateTime		creationDate;
 
 		public CreateProductCommand (String name, Double price, String description, String category,
 		Integer stock, Boolean digitalProduct, LocalDateTime creationDate) {

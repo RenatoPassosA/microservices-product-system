@@ -12,9 +12,9 @@ public class DeleteProductUseCaseImplementation implements DeleteProductUseCase{
 	}
 
 	@Override
-	public void execute(Long	id)
+	public void execute(Long id)
 	{
-		if (this.productRepository.findById(id).isPresent())
+		if (!this.productRepository.findById(id).isPresent())
 			throw new IllegalArgumentException("Produto não encontrado");
 
 		this.productRepository.deleteById(id);

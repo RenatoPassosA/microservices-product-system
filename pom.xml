@@ -2,18 +2,19 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    
+
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.project</groupId>
     <artifactId>product-api</artifactId>
     <version>1.0-SNAPSHOT</version>
-    
+
+    <!-- Atualizado para Spring Boot 3.x -->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.5.4</version> <!-- Verifique se a versão do Spring Boot está definida -->
-        <relativePath/>
+        <version>3.0.0</version> <!-- Atualizado para versão 3.x -->
+        <relativePath/> <!-- Lookup parent from repository -->
     </parent>
 
     <dependencies>
@@ -30,12 +31,11 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- Spring Boot Starter Validation (já inclui hibernate-validator) -->
+        <!-- Spring Boot Starter Validation (Agora usa Jakarta Validation) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
-
     </dependencies>
 
     <build>

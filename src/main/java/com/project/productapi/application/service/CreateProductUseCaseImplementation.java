@@ -1,10 +1,9 @@
 package com.project.productapi.application.service;
 
+import com.project.productapi.application.command.CreateProductCommand;
 import com.project.productapi.core.domain.Product;
 import com.project.productapi.core.gateway.ProductRepository;
 import com.project.productapi.core.usecases.CreateProductUseCase;
-
-import com.project.productapi.application.command.CreateProductCommand;
 
 public class CreateProductUseCaseImplementation implements CreateProductUseCase{
 	
@@ -31,6 +30,6 @@ public class CreateProductUseCaseImplementation implements CreateProductUseCase{
 			productCommand.getCreationDate()
 		);
 
-		return(productRepository.save(prod)); //setar o repositório para que o save retorno a entidade com o id preenchido
+		return(productRepository.save(prod)); //setar o repositório para que o save retorne a entidade com o id preenchido
 	}
 }

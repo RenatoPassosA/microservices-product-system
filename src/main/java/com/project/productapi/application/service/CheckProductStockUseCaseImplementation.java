@@ -23,9 +23,10 @@ public class CheckProductStockUseCaseImplementation implements CheckProductStock
 		if (!findProd.isPresent())
 			throw new IllegalArgumentException("Produto não encontrado");
 
-		CheckStockResult prod = new CheckStockResult(findProd.get().getId(),
-		findProd.get().getName(),
-		findProd.get().getStock());
+		CheckStockResult prod = new CheckStockResult(
+			findProd.get().getId(),
+			findProd.get().getName(),
+			findProd.get().getStock());
 
 		return(prod);
 	}

@@ -9,7 +9,7 @@ public class UpdateProductCommand {
         final private Integer			stock;
         final private Boolean			digitalProduct;
 
-		public UpdateProductCommand (Long	id, String name, Double price, String description, String category,
+		public UpdateProductCommand (Long id, String name, Double price, String description, String category,
 		Integer stock, Boolean digitalProduct) {
 			this.id = id;
 			this.name = name;
