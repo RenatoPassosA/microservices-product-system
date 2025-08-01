@@ -1,0 +1,187 @@
+Clean Architecture
+
+O objetivo é proteger a lógica de negócio do sistema (o “coração” do software), garantindo que:
+
+ela não dependa de frameworks (Spring, Hibernate, etc.);
+
+ela não dependa de banco de dados;
+
+ela não dependa de como os dados chegam ou saem (HTTP, CLI, gRPC...);
+
+e que tudo isso possa ser trocado ou reescrito, sem tocar nas regras centrais.
+
+Por isso, temos camadas em anéis concêntricos, com dependências sempre de fora para dentro, nunca o contrário.
+
+
+
+NÚCLEO:
+
+O núcleo da aplicação (core) é formado por dois componentes principais: Entidades (Entities) e Casos de uso (Use Cases)
+
+-	ENTITIES (Entidades do Domínio)
+São os modelos que expressam o comportamento e as regras fundamentais do sistema, de forma pura e independente de tecnologia.
+As entidades representam os conceitos centrais do domínio da sua aplicação. Elas encapsulam regras e comportamentos que definem o que o sistema deve fazer com aqueles objetos.
+
+Funções:
+Contêm regras de negócio invariáveis (ex: preço nunca pode ser negativo, estoque não pode ser negativo).
+Podem ser usadas por vários sistemas (REST, CLI, app mobile, etc.)
+Não devem usar nenhuma anotação de framework.
+
+Objetivo:
+Garantir consistência e integridade do objeto
+Fornecer comportamentos válidos
+Estar protegidas contra estados inválidos
+Ser testáveis sem infraestrutura
+
+-	USE CASES (Casos de Uso / Application Layer)
+São serviços de aplicação que executam ações completas, como “criar produto”, “editar produto”, “adicionar ao estoque”. Cada caso de uso combina e orquestra entidades, sem saber de onde vêm os dados nem como são persistidos.
+Os casos de uso representam ações do mundo real que a aplicação deve executar. Eles orquestram entidades e definem o fluxo de execução da lógica de negócio, sem saber de onde vêm os dados nem como são persistidos.
+
+Orquestrar entidades é fazer com que duas ou mais entidades do domínio (como Produto, Cliente, Pedido, etc.) interajam entre si para realizar uma ação de negócio.
+Persistir dados significa salvar informações de forma permanente, geralmente em um banco de dados, de modo que não se percam quando o sistema for desligado.
+
+Características:
+Chamam interfaces, nunca implementações (como ProductRepository, mas não JpaProductRepository).
+Contêm regras específicas de fluxo, como verificar se o nome do produto já existe antes de salvar.
+
+Ele não é apenas um "encaminhador de dados" — ele é o motor da lógica de negócio.
+Ele:
+
+Aplica regras de negócio que envolvem uma ou mais entidades;
+Orquestra chamadas às entidades e repositórios;
+Valida condições específicas do caso;
+Chama a persistência (via interface) somente se tudo for válido.
+
+No fluxo de execução o usecases validas as regras e persiste os dados (essa persistência foi sobrescrita pelo adapter)
+
+
+A entidade tem que se proteger contra estados inválidos em si mesma. Por exemplo:
+se eu fizer um método na entidade para remover do estoque, eu devo verificar se estoque <= 0 ou então se quantidade é > que estoque
+nesse caso a entidade não deve permitir ficar com estoque negativo, mesmo sem saber se isso foi pedido por um cliente, um admin ou um robô. Ela apenas protege a si mesma.
+Já o caso de uso sabe em que situação estamos (venda, reposição, transferência...) e aplica regras do sistema.
+
+A entidade protege seu próprio estado (não aceita estoque negativo, preço nulo, etc.).
+O caso de uso protege as regras de negócio (não vende acima do limite, não altera produto expirado).
+A interface protege a comunicação externa (verifica se os campos do JSON vieram corretos).
+
+
+
+INTERFACE ADAPTERS:
+
+São os tradutores entre o mundo externo (HTTP, banco, fila, etc.) e o núcleo da aplicação.
+
+Eles adaptam formatos de entrada e saída, e também implementam dependências do núcleo (como interfaces de repositório).
+
+Controllers	Usam os Use Cases para executar ações de negócio com base em requisições externas (ex: HTTP REST, CLI, GraphQL) - pega o request(dto) e transformam em command
+
+
+Gateways (ou Repositórios Adaptadores)	Usam o banco de dados (ou outro meio de persistência) para implementar interfaces do núcleo, como ProductRepository
+
+
+
+Fluxo:
+
+1. O dado chega via requisição externa (ex: JSON via REST)
+➡️ Quem trata isso: Controller (Interface Adapter)
+
+O Controller traduz a entrada externa para um Command
+O DTO é um formato da web
+
+O Command é um formato interno do sistema
+
+O Controller não tem regra de negócio
+
+2. O UseCase executa a lógica de negócio
+Recebe o Command
+
+Cria a entidade do domínio (Product)
+
+Chama métodos da entidade, como removeStock(), validate(), etc.
+
+Aplica regras como "produto digital não pode ter estoque"
+
+Se tudo estiver válido, chama o repositório (interface)
+
+O UseCase não chama diretamente os métodos do adaptador/gateway.
+Ele chama a interface ProductRepository, que está no núcleo.
+E o Spring (ou outra injeção de dependência) fornece uma implementação concreta para essa interface em tempo de execução.
+
+
+3. O UseCase NÃO sabe quem implementa a interface ProductRepository
+Ele só sabe que alguém implementa.
+
+Ele depende da abstração, não da implementação.
+
+Isso é o princípio da inversão de dependência (DIP).
+
+4. O adaptador (JpaProductRepository) implementa essa interface
+➡️ Quem trata isso: Gateway (Interface Adapter de persistência)
+Esse adaptador sabe como salvar no banco
+
+Ele usa o JPA, ou outro framework, para realizar a operação real
+
+Ele traduz a entidade de domínio para uma entidade JPA
+
+
+O controller traduz a entrada, o caso de uso valida as regras com as entidades, e os adaptadores (gateways) implementam as ações concretas que o domínio precisa, como persistir no banco — mas o núcleo nunca sabe quem está por trás da interface.
+
+Exemplo do fluxo:
+
+Vamos rever o fluxo completo:
+Controller recebe o CreateProductDTO
+Converte para um CreateProductCommand
+Passa o Command para o Use Case
+
+O Use Case:
+Usa o Command para criar um Product (entidade de domínio)
+Aplica regras de negócio
+Se tudo OK, chama: productRepository.save(product);
+
+O adapter JpaProductRepository recebe o Product, e:
+Converte Product para ProductEntity
+Usa jpa.save(...) para persistir
+
+
+
+
+Guia:
+
+
+Ordem recomendada de construção na Clean Architecture
+1. Entidades do domínio (domain/model)
+Comece definindo os objetos centrais da sua lógica de negócio (Product, Pedido, Cliente, etc.)
+
+Escreva métodos que garantem a integridade do objeto
+
+Não coloque anotações JPA, JSON ou Spring aqui
+
+2. Interfaces (contratos) de repositórios e serviços (domain/repository)
+Declare o que o domínio precisa em forma de interface
+
+Ex: ProductRepository com save, findById, etc.
+
+3. Casos de uso (application/usecase)
+Construa a lógica de negócio completa, orquestrando as entidades
+
+Use os repositórios como dependências
+
+Receba Commands como entrada
+
+4. Commands / Input Models (application/command)
+Crie classes simples que encapsulam a entrada do caso de uso
+
+Ex: CreateProductCommand, AtualizarEstoqueCommand
+
+⚠️ Até aqui você não usou nenhum framework. Tudo pode ser testado com JUnit, sem Spring Boot, sem banco.
+
+5. Interfaces externas / Adaptadores (interface/controller, infrastructure/repository)
+Controller: converte JSON → DTO → Command → chama o UseCase
+
+Gateway / Adaptador de repositório: implementa a interface de repositório com o framework (ex: JPA)
+
+6. Frameworks & Drivers (Spring, JPA, REST, Kafka, etc.)
+Configure dependências, rotas, injeção com Spring
+
+Esses são detalhes que vêm por último
+
+

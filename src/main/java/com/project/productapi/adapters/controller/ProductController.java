@@ -87,7 +87,7 @@ public class ProductController {
 	}
 	
 	@PutMapping("products/id/{id}")
-	public ResponseEntity<UpdateProductResponseDTO> updateProduct(@PathVariable Long id, @RequestBody UpdateProductRequestDTO product) {
+	public ResponseEntity<UpdateProductResponseDTO> updateProduct(@PathVariable  @Valid Long id, @RequestBody UpdateProductRequestDTO product) {
 		
 		UpdateProductCommand updateprodCommand = product.dtoToCommand(id);
 		Product prod = updateProductUseCase.execute(updateprodCommand);
@@ -132,15 +132,7 @@ public class ProductController {
 
 		return ResponseEntity
 		.status(HttpStatus.OK)
-		.body(new ProductResponseDTO(
-			id,
-			prod.getName(),
-			prod.getPrice(),
-			prod.getDescription(),
-			prod.getCategory(),
-			prod.getStock(),
-			prod.getDigitalProduct(),
-			prod.getCreationDate()));
+		.body(ProductResponseDTO.productToResponseDTO(prod));
 	}
 
 	@GetMapping("products/name/{name}")
@@ -186,16 +178,11 @@ public class ProductController {
 		.status(HttpStatus.OK)
 		.body(checkProductStockUseCase.execute(id)));
 	}
-	
-	
-
-	
-
 }
 
 /*Sempre que um use case gerar um resultado relevante para o cliente (por exemplo, um produto criado ou uma busca retornando um produto), 
  você deve expô-lo através de um endpoint na sua API. 
  O JSON recebido na requisição HTTP é convertido para um DTO de forma automática pelo spring
- Oback e o front devem estar alinhados para chegar as infos contendo os campos corretos
+ O back e o front devem estar alinhados para chegar as infos contendo os campos corretos
  
  A rota é como a url aparece no navegador. Eu que defino como ela será estruturada*/
