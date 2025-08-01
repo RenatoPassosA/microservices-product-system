@@ -86,7 +86,7 @@ public class ProductController {
     		.body(ProductResponseDTO.productToResponseDTO(prod));
 	}
 	
-	@PutMapping("products/id/{id}")
+	@PutMapping("/id/{id}")
 	public ResponseEntity<UpdateProductResponseDTO> updateProduct(@PathVariable  @Valid Long id, @RequestBody UpdateProductRequestDTO product) {
 		
 		UpdateProductCommand updateprodCommand = product.dtoToCommand(id);
@@ -105,14 +105,14 @@ public class ProductController {
 				prod.getCreationDate()));
 	}
 
-	@DeleteMapping("products/id/{id}")
+	@DeleteMapping("/id/{id}")
 	public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
 
 		deleteProductUseCase.execute((id));
 		return (ResponseEntity.noContent().build());
 	}
 
-	@GetMapping("products/available")
+	@GetMapping("/available")
 	public ResponseEntity<List<ProductResponseDTO>> findAvailable() {
 		
 		List<Product> products = findAvailableProductsUseCase.execute();
@@ -125,7 +125,7 @@ public class ProductController {
 		
 	}
 
-	@GetMapping("products/id/{id}")
+	@GetMapping("/id/{id}")
 	public ResponseEntity<ProductResponseDTO> findById(@PathVariable Long id) {
 		
 		Product prod = findProductByIdUseCase.execute(id);
@@ -135,7 +135,7 @@ public class ProductController {
 		.body(ProductResponseDTO.productToResponseDTO(prod));
 	}
 
-	@GetMapping("products/name/{name}")
+	@GetMapping("/name/{name}")
 	public ResponseEntity<ProductResponseDTO> findByName(@PathVariable String name) {
 		
 		Product prod = findProductByNameUseCase.execute(name);
@@ -145,7 +145,7 @@ public class ProductController {
 		.body(ProductResponseDTO.productToResponseDTO(prod));
 	}
 // findProductsByPriceRangeUseCase
-	@GetMapping("products/price-range")
+	@GetMapping("/price-range")
 	public ResponseEntity<List<ProductResponseDTO>> findByRange (@RequestParam Double min, Double max) {
 
 		List<Product> prods = findProductsByPriceRangeUseCase.execute(min, max);
@@ -157,7 +157,7 @@ public class ProductController {
 		return (ResponseEntity.status(HttpStatus.OK).body(response));
 	}
 
-	@GetMapping("products")
+	@GetMapping
 	public ResponseEntity<List<ProductResponseDTO>> listAll() {
 
 		List<Product> prods = listAllProductsUseCase.execute();
@@ -171,7 +171,7 @@ public class ProductController {
 	}
 
 	// checkProductStockUseCase
-	@GetMapping("products/stock/{id}")
+	@GetMapping("/stock/{id}")
 	public ResponseEntity<CheckStockResult> checkStock(@PathVariable Long id)
 	{
 		return (ResponseEntity

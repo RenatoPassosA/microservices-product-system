@@ -1,8 +1,11 @@
 package com.project.productapi.application.service;
 
+import org.springframework.stereotype.Service;
+
 import com.project.productapi.core.gateway.ProductRepository;
 import com.project.productapi.core.usecases.DeleteProductUseCase;
 
+@Service
 public class DeleteProductUseCaseImplementation implements DeleteProductUseCase{
 
 	private final ProductRepository productRepository;

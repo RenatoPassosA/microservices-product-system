@@ -1,10 +1,13 @@
 package com.project.productapi.application.service;
 
+import org.springframework.stereotype.Service;
+
 import com.project.productapi.application.command.CreateProductCommand;
 import com.project.productapi.core.domain.Product;
 import com.project.productapi.core.gateway.ProductRepository;
 import com.project.productapi.core.usecases.CreateProductUseCase;
 
+@Service
 public class CreateProductUseCaseImplementation implements CreateProductUseCase{
 	
 	private final ProductRepository productRepository;

@@ -2,10 +2,13 @@ package com.project.productapi.application.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.project.productapi.core.domain.Product;
 import com.project.productapi.core.gateway.ProductRepository;
 import com.project.productapi.core.usecases.FindProductsByPriceRangeUseCase;
 
+@Service
 public class FindProductsByPriceRangeUseCaseImplementation implements FindProductsByPriceRangeUseCase {
 	private final ProductRepository productRepository;
 	

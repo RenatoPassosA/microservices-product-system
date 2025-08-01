@@ -2,11 +2,14 @@ package com.project.productapi.application.service;
 
 import java.util.Optional;
 
+import org.springframework.stereotype.Service;
+
 import com.project.productapi.application.command.UpdateProductCommand;
 import com.project.productapi.core.domain.Product;
 import com.project.productapi.core.gateway.ProductRepository;
 import com.project.productapi.core.usecases.UpdateProductUseCase;
 
+@Service
 public class UpdateProductUseCaseImplementation implements UpdateProductUseCase{
 	
 	private final ProductRepository productRepository;

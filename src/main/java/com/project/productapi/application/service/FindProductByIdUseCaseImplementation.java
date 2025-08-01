@@ -1,9 +1,12 @@
 package com.project.productapi.application.service;
 
+import org.springframework.stereotype.Service;
+
 import com.project.productapi.core.domain.Product;
 import com.project.productapi.core.gateway.ProductRepository;
 import com.project.productapi.core.usecases.FindProductByIdUseCase;
 
+@Service
 public class FindProductByIdUseCaseImplementation implements FindProductByIdUseCase {
 	private final ProductRepository productRepository;
 	
