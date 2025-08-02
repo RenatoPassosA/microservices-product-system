@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: com.project.productapi.integration.IntegrationTests
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 4.802 s <<< FAILURE! - in com.project.productapi.integration.IntegrationTests
+getProductByIdSuccess  Time elapsed: 0.312 s  <<< FAILURE!
+java.lang.AssertionError: Status expected:<200> but was:<404>
+	at com.project.productapi.integration.IntegrationTests.getProductByIdSuccess(IntegrationTests.java:130)
+

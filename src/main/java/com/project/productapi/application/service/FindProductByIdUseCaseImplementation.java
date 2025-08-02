@@ -2,6 +2,7 @@ package com.project.productapi.application.service;
 
 import org.springframework.stereotype.Service;
 
+import com.project.productapi.application.exceptions.ProductNotFoundException;
 import com.project.productapi.core.domain.Product;
 import com.project.productapi.core.gateway.ProductRepository;
 import com.project.productapi.core.usecases.FindProductByIdUseCase;
@@ -19,6 +20,6 @@ public class FindProductByIdUseCaseImplementation implements FindProductByIdUseC
 		
     	return productRepository.findById(id)
         .orElseThrow(() -> 
-		new IllegalArgumentException("Produto não encontrado"));
+		new ProductNotFoundException("Produto não encontrado"));
 	}
 }

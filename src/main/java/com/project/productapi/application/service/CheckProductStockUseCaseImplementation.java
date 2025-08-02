@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.project.productapi.application.exceptions.ProductNotFoundException;
 import com.project.productapi.application.result.CheckStockResult;
 import com.project.productapi.core.domain.Product;
 import com.project.productapi.core.gateway.ProductRepository;
@@ -24,7 +25,7 @@ public class CheckProductStockUseCaseImplementation implements CheckProductStock
 		Optional <Product> findProd = productRepository.findById(id);
 
 		if (!findProd.isPresent())
-			throw new IllegalArgumentException("Produto não encontrado");
+			throw new ProductNotFoundException("Produto não encontrado");
 
 		CheckStockResult prod = new CheckStockResult(
 			findProd.get().getId(),

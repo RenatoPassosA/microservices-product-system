@@ -2,13 +2,16 @@
 /home/renato/microservices-product-system/src/main/java/com/project/productapi/core/usecases/FindProductByIdUseCase.java
 /home/renato/microservices-product-system/src/main/java/com/project/productapi/application/service/ListAllProductsUseCaseImplementation.java
 /home/renato/microservices-product-system/src/main/java/com/project/productapi/application/service/FindAvailableProductsUseCaseImplementation.java
+/home/renato/microservices-product-system/src/main/java/com/project/productapi/application/dto/ErrorResponse.java
 /home/renato/microservices-product-system/src/main/java/com/project/productapi/application/service/FindProductsByPriceRangeUseCaseImplementation.java
+/home/renato/microservices-product-system/src/main/java/com/project/productapi/application/exceptions/InvalidPriceRangeException.java
 /home/renato/microservices-product-system/src/main/java/com/project/productapi/Application.java
 /home/renato/microservices-product-system/src/main/java/com/project/productapi/core/usecases/CheckProductStockUseCase.java
 /home/renato/microservices-product-system/src/main/java/com/project/productapi/application/service/UpdateProductUseCaseImplementation.java
 /home/renato/microservices-product-system/src/main/java/com/project/productapi/application/dto/CreateProductRequestDTO.java
 /home/renato/microservices-product-system/src/main/java/com/project/productapi/core/usecases/FindAvailableProductsUseCase.java
 /home/renato/microservices-product-system/src/main/java/com/project/productapi/core/usecases/FindProductByNameUseCase.java
+/home/renato/microservices-product-system/src/main/java/com/project/productapi/application/exceptions/DuplicateProductNameException.java
 /home/renato/microservices-product-system/src/main/java/com/project/productapi/application/dto/UpdateProductRequestDTO.java
 /home/renato/microservices-product-system/src/main/java/com/project/productapi/core/usecases/ListAllProductsUseCase.java
 /home/renato/microservices-product-system/src/main/java/com/project/productapi/core/domain/Product.java
@@ -16,6 +19,7 @@
 /home/renato/microservices-product-system/src/main/java/com/project/productapi/application/command/CreateProductCommand.java
 /home/renato/microservices-product-system/src/main/java/com/project/productapi/core/usecases/DeleteProductUseCase.java
 /home/renato/microservices-product-system/src/main/java/com/project/productapi/application/service/FindProductByIdUseCaseImplementation.java
+/home/renato/microservices-product-system/src/main/java/com/project/productapi/application/exceptions/BusinessException.java
 /home/renato/microservices-product-system/src/main/java/com/project/productapi/adapters/controller/ProductController.java
 /home/renato/microservices-product-system/src/main/java/com/project/productapi/core/usecases/UpdateProductUseCase.java
 /home/renato/microservices-product-system/src/main/java/com/project/productapi/application/command/UpdateProductCommand.java
@@ -25,9 +29,11 @@
 /home/renato/microservices-product-system/src/main/java/com/project/productapi/application/service/CreateProductUseCaseImplementation.java
 /home/renato/microservices-product-system/src/main/java/com/project/productapi/infrastructure/repository/jpa/JpaProductRepository.java
 /home/renato/microservices-product-system/src/main/java/com/project/productapi/application/dto/ProductResponseDTO.java
+/home/renato/microservices-product-system/src/main/java/com/project/productapi/adapters/controller/advice/GlobalExceptionHandler.java
 /home/renato/microservices-product-system/src/main/java/com/project/productapi/application/service/FindProductByNameUseCaseImplementation.java
 /home/renato/microservices-product-system/src/main/java/com/project/productapi/application/result/CheckStockResult.java
 /home/renato/microservices-product-system/src/main/java/com/project/productapi/application/dto/UpdateProductResponseDTO.java
 /home/renato/microservices-product-system/src/main/java/com/project/productapi/infrastructure/repository/jpa/ProductRepositoryJPAImplementation.java
 /home/renato/microservices-product-system/src/main/java/com/project/productapi/application/service/DeleteProductUseCaseImplementation.java
 /home/renato/microservices-product-system/src/main/java/com/project/productapi/core/usecases/FindProductsByPriceRangeUseCase.java
+/home/renato/microservices-product-system/src/main/java/com/project/productapi/application/exceptions/ProductNotFoundException.java

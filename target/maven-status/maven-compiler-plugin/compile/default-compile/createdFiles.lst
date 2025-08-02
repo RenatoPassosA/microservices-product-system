@@ -7,7 +7,9 @@ com/project/productapi/core/usecases/DeleteProductUseCase.class
 com/project/productapi/Application.class
 com/project/productapi/infrastructure/repository/jpa/JpaProductRepository.class
 com/project/productapi/core/usecases/FindAvailableProductsUseCase.class
+com/project/productapi/application/exceptions/InvalidPriceRangeException.class
 com/project/productapi/adapters/controller/ProductController.class
+com/project/productapi/application/exceptions/ProductNotFoundException.class
 com/project/productapi/application/service/FindProductByNameUseCaseImplementation.class
 com/project/productapi/infrastructure/repository/jpa/ProductEntityMapper.class
 com/project/productapi/core/usecases/CheckProductStockUseCase.class
@@ -17,6 +19,9 @@ com/project/productapi/application/dto/UpdateProductResponseDTO.class
 com/project/productapi/application/service/CreateProductUseCaseImplementation.class
 com/project/productapi/application/command/UpdateProductCommand.class
 com/project/productapi/infrastructure/repository/jpa/ProductEntity.class
+com/project/productapi/application/dto/ErrorResponse.class
+com/project/productapi/application/exceptions/BusinessException.class
+com/project/productapi/application/exceptions/DuplicateProductNameException.class
 com/project/productapi/application/command/CreateProductCommand.class
 com/project/productapi/application/service/UpdateProductUseCaseImplementation.class
 com/project/productapi/core/usecases/FindProductByNameUseCase.class
@@ -26,6 +31,7 @@ com/project/productapi/application/service/FindProductByIdUseCaseImplementation.
 com/project/productapi/application/dto/CreateProductRequestDTO.class
 com/project/productapi/application/service/FindAvailableProductsUseCaseImplementation.class
 com/project/productapi/infrastructure/repository/jpa/ProductRepositoryJPAImplementation.class
+com/project/productapi/adapters/controller/advice/GlobalExceptionHandler.class
 com/project/productapi/application/service/CheckProductStockUseCaseImplementation.class
 com/project/productapi/core/usecases/FindProductsByPriceRangeUseCase.class
 com/project/productapi/application/service/DeleteProductUseCaseImplementation.class

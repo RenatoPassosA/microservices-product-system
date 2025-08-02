@@ -1,0 +1,14 @@
+-------------------------------------------------------------------------------
+Test set: com.project.productapi.integration.GetProductIntegrationTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 31.237 s <<< FAILURE! - in com.project.productapi.integration.GetProductIntegrationTest
+getProductByIdSuccess  Time elapsed: 30.036 s  <<< ERROR!
+org.springframework.transaction.CannotCreateTransactionException: Could not open JPA EntityManager for transaction
+	at com.project.productapi.integration.GetProductIntegrationTest.cleanDatabase(GetProductIntegrationTest.java:48)
+Caused by: org.hibernate.exception.JDBCConnectionException: Unable to acquire JDBC Connection
+	at com.project.productapi.integration.GetProductIntegrationTest.cleanDatabase(GetProductIntegrationTest.java:48)
+Caused by: java.sql.SQLTransientConnectionException: HikariPool-1 - Connection is not available, request timed out after 30000ms.
+	at com.project.productapi.integration.GetProductIntegrationTest.cleanDatabase(GetProductIntegrationTest.java:48)
+Caused by: org.postgresql.util.PSQLException: Connection to localhost:54292 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
+Caused by: java.net.ConnectException: Connection refused
+

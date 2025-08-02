@@ -1,0 +1,4 @@
+/home/renato/microservices-product-system/src/test/java/com/project/productapi/config/PostgresTestContainerConfig.java
+/home/renato/microservices-product-system/src/test/java/com/project/productapi/integration/IntegrationTests.java
+/home/renato/microservices-product-system/src/test/java/com/project/productapi/integration/GetProductIntegrationTest.java
+/home/renato/microservices-product-system/src/test/java/com/project/productapi/repository/test/TestProductRepository.java

@@ -3,6 +3,7 @@ package com.project.productapi.application.service;
 import org.springframework.stereotype.Service;
 
 import com.project.productapi.application.command.CreateProductCommand;
+import com.project.productapi.application.exceptions.DuplicateProductNameException;
 import com.project.productapi.core.domain.Product;
 import com.project.productapi.core.gateway.ProductRepository;
 import com.project.productapi.core.usecases.CreateProductUseCase;
@@ -20,7 +21,7 @@ public class CreateProductUseCaseImplementation implements CreateProductUseCase{
 	public Product execute(CreateProductCommand productCommand)
 	{
 		if (this.productRepository.findByName(productCommand.getName()).isPresent())
-			throw new IllegalArgumentException("Produto com esse nome já existe");
+			throw new DuplicateProductNameException("Produto com esse nome já existe");
 
 		Product prod = new Product(
 			null,

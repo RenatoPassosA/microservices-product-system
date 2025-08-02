@@ -5,6 +5,8 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.project.productapi.application.command.UpdateProductCommand;
+import com.project.productapi.application.exceptions.DuplicateProductNameException;
+import com.project.productapi.application.exceptions.ProductNotFoundException;
 import com.project.productapi.core.domain.Product;
 import com.project.productapi.core.gateway.ProductRepository;
 import com.project.productapi.core.usecases.UpdateProductUseCase;
@@ -23,12 +25,12 @@ public class UpdateProductUseCaseImplementation implements UpdateProductUseCase{
 	{
 		Optional<Product>	prod = this.productRepository.findById(productCommand.getId());
 		if (prod.isEmpty())
-			throw new IllegalArgumentException("Produto não encontrado");
+			throw new ProductNotFoundException("Produto não encontrado");
 		Product existingProd = prod.get();  //achou o produto pelo id que pretende att
 
 		if (!productCommand.getName().equals(existingProd.getName())) //verificação se existe produto com o mesmo nome que se quer atualizar
 			if (productRepository.findByName(productCommand.getName()).isPresent())
-				throw new IllegalArgumentException("Produto com esse nome já existe");
+				throw new DuplicateProductNameException("Produto com esse nome já existe");
 
 		if (productCommand.getName() != null && !productCommand.getName().isBlank())
 			existingProd.setName(productCommand.getName());
