@@ -185,3 +185,40 @@ Configure dependências, rotas, injeção com Spring
 Esses são detalhes que vêm por último
 
 
+
+
+tests:
+
+CreateProductIntegrationTest.java
+createProductSucessfully
+
+createProductWithoutNameFail
+
+createProductWithNegativePriceFail
+
+createProductSameNameFail
+
+createProductWithDiscountOver100Fail
+
+2. GetProductIntegrationTest.java
+getProductByIdSuccess
+
+getProductByIdNotFound
+
+getProductByNameSuccess
+
+getProductByNameEmptyResult
+
+getProductsByPriceRangeSuccess
+
+getProductsByInvalidPriceRangeFail
+
+listAllProductsSuccess
+
+3. CheckStockIntegrationTest.java
+checkStockSuccess
+
+checkStockProductNotFound
+
+4. DeleteProductIntegrationTest.java
+deleteProductAndThenGetByIdFail
